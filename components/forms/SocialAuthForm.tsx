@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import React from "react";
 import { toast } from "sonner";
 
-import ROUTES from "@/constants/route";
+import ROUTES from "@/constants/routes";
 
 import { Button } from "../ui/button";
 
