@@ -1,14 +1,14 @@
-// /lib/validations.ts
 import { z } from "zod";
 
 export const SignInSchema = z.object({
   email: z
-    .email({ message: "Please provide a valid email address." })
-    .min(1, { message: "Email is required." }),
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Please provide a valid email address." }),
 
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters long." })
+    .min(6, { message: "Password must be at least 6 characters long. " })
     .max(100, { message: "Password cannot exceed 100 characters." }),
 });
 
@@ -30,8 +30,9 @@ export const SignUpSchema = z.object({
     }),
 
   email: z
-    .email({ message: "Please provide a valid email address." })
-    .min(1, { message: "Email is required." }),
+    .string()
+    .min(1, { message: "Email is required." })
+    .email({ message: "Please provide a valid email address." }),
 
   password: z
     .string()
@@ -65,4 +66,20 @@ export const AskQuestionSchema = z.object({
     )
     .min(1, { message: "At least one tag is required." })
     .max(3, { message: "Cannot add more than 3 tags." }),
+});
+
+export const UserSchema = z.object({
+  name: z.string().min(1, { message: "Name is required." }),
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters long." }),
+  email: z.string().email({ message: "Please provide a valid email address." }),
+  bio: z.string().optional(),
+  image: z.string().url({ message: "Please provide a valid URL." }).optional(),
+  location: z.string().optional(),
+  portfolio: z
+    .string()
+    .url({ message: "Please provide a valid URL." })
+    .optional(),
+  reputation: z.number().optional(),
 });
