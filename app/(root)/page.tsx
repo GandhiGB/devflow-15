@@ -8,6 +8,7 @@ import ROUTES from "@/constants/routes";
 import { api } from "@/lib/api";
 import handleError from "@/lib/handlers/error";
 import { ValidationError } from "@/lib/http-errors";
+import { auth } from "@/auth";
 
 // ...existing code...
 const questions = [
@@ -49,22 +50,14 @@ const questions = [
   },
 ];
 
-const test = async () => {
-  try {
-    return await api.users.getAll();
-  } catch (error) {
-    return handleError(error);
-  }
-};
-
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
-  const users = await test();
+  const session = await auth();
 
-  console.log("these are the users", users);
+  console.log("Session: ", session);
 
   const { query = "", filter = "" } = await searchParams;
 
