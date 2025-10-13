@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { auth } from "@/auth";
 import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filter/HomeFilter";
 import LocalSearch from "@/components/search/LocalSearch";
@@ -8,7 +9,6 @@ import ROUTES from "@/constants/routes";
 import { api } from "@/lib/api";
 import handleError from "@/lib/handlers/error";
 import { ValidationError } from "@/lib/http-errors";
-import { auth } from "@/auth";
 
 // ...existing code...
 const questions = [
